@@ -15,7 +15,7 @@ app.use(cookieParser()); //reads cookie data
 
 //utilising the routes
 app.use("/api/v1/auth", authRouter); //pre-pending /api/v1/auth before each authRoute mentioned inside authRouter
-app.use("api/v1/users", userRouter);
+app.use("/api/v1/users", userRouter);
 app.use("/api/v1/subscriptions", subscriptionRouter);
 
 //utilising error middleware
