@@ -14,3 +14,20 @@ export const createSubscription = async(req, res, next) =>{
         next(error);
     }
 }
+
+
+export const getUserSubscriptions = async(req, res, next) => {
+    try {
+        //check if the user is same as the one in token
+        if(req.user.id !== req.params.id){
+            const error = new Error('Unauthorised access for some other user detected!');
+            error.status = 401;
+            throw error;
+        }
+
+        const subscriptions = await Subscription.find({user: req.params.id});
+        res.status(200).json({success: true, data: subscriptions});
+    } catch (error) {
+        next(error);
+    }
+}
